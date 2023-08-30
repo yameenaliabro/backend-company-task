@@ -1,15 +1,15 @@
 import { ApiError } from "../../helpers";
 import IDosage from "../../models/Dosage";
-import { createDosageProps, getDosageProps } from "./dto";
+import { createHistoryProps, getDosageProps } from "./dto";
 
-export const createDosage = async (props: createDosageProps) => {
-    const { drugname, zipcode } = props
+export const createHistory = async (props: createHistoryProps) => {
+    const { drugname, userId } = props
     const dosage = new IDosage({
         drugname,
-        zipcode
+        userId
     })
-    const createdosage = await dosage.save()
-    return createdosage
+    const createhistory = await dosage.save()
+    return createhistory
 }
 
 export const getDosage = async (props: getDosageProps) => {

@@ -3,7 +3,7 @@ import { IDosageType } from "../types/dosage";
 
 const dosageSchema = new Schema<IDosageType>({
     drugname: { type: String, required: true },
-    zipcode: { type: Number, required: true }
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
 }, { timestamps: true })
 
 const IDosage = mongoose.model("dosage", dosageSchema)

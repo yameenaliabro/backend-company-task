@@ -1,11 +1,11 @@
 import Joi from "joi";
-import { createDosage } from "../../controllers/dosage";
 import { ApiError, Request, Response } from "../../helpers";
 import { wrap } from "../../wrappers";
+import { createHistory } from "../../controllers/dosage";
 
 interface CreateDosageBodyProps {
     drugname: string,
-    zipcode: number
+    userId: string
 }
 
 const createDosageSchema = {
@@ -16,17 +16,17 @@ const createDosageSchema = {
     })
 }
 
-const createDosageApi = async (req: Request<CreateDosageBodyProps>, res: Response) => {
-    const { drugname, zipcode } = req.body
-    const createdosage = await createDosage({ drugname, zipcode })
-    if (!createDosage) {
+const createHistoryApi = async (req: Request<CreateDosageBodyProps>, res: Response) => {
+    const { drugname, userId } = req.body
+    const createdosage = await createHistory({ drugname, userId })
+    if (!createdosage) {
         throw new ApiError(401, "some thing wrong")
     }
     res.send(createdosage)
 }
 
-export default wrap(createDosageApi, {
+export default wrap(createHistoryApi, {
     authedOnly: false,
     catch: true,
-    validate: createDosageSchema,
+    validate: {},
 })

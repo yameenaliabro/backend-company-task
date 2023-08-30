@@ -1,6 +1,8 @@
-export type createDosageProps = {
+import { Types } from "mongoose"
+
+export type createHistoryProps = {
     drugname: string,
-    zipcode: number,
+    userId: string
 }
 
 export type getDosageProps = {
